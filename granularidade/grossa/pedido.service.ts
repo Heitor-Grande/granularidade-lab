@@ -1,6 +1,6 @@
-import Pedido from "../interface/pedido.js";
-import Usuario from "../interface/usuario.js";
-import Estoque from "../interface/estoque.js";
+import Pedido from "../interface/pedido.ts";
+import Usuario from "../interface/usuario.ts";
+import Estoque from "../interface/estoque.ts";
 
 export default class PedidoService {
 
