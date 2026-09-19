@@ -1,14 +1,14 @@
-import PedidoServiceGrossa from "./granularidade/grossa/pedido.service.ts";
-import PedidoServiceFina from "./granularidade/fina/pedido.service.ts";
-import Pedido from "./granularidade/interface/pedido.ts";
-import Usuario from "./granularidade/interface/usuario.ts";
-import VerificarUsuarioAtivoService from "./granularidade/fina/verificarUsuarioAtivo.service.ts";
-import ValidarEstoqueService from "./granularidade/fina/validarEstoque.service.ts";
-import ProcessarPagamentoService from "./granularidade/fina/processarPagamento.service.ts";
-import EnviarEmailDeConfirmacaoDoPedidoService from "./granularidade/fina/enviarEmailDeConfirmacaoDoPedido.service.ts";
-import ConsultarEstoqueGeralService from "./granularidade/fina/consultarEstoqueGeral.service.ts";
-import ConsultarEstoqueDoProdutoService from "./granularidade/fina/consultarEstoqueDoProduto.service.ts";
-import CalcularTotalService from "./granularidade/fina/calcularTotal.service.ts";
+import PedidoServiceGrossa from "./grossa/pedido.service.ts";
+import PedidoServiceFina from "./fina/pedido.service.ts";
+import Pedido from "./interface/pedido.ts";
+import Usuario from "./interface/usuario.ts";
+import VerificarUsuarioAtivoService from "./fina/verificarUsuarioAtivo.service.ts";
+import ValidarEstoqueService from "./fina/validarEstoque.service.ts";
+import ProcessarPagamentoService from "./fina/processarPagamento.service.ts";
+import EnviarEmailDeConfirmacaoDoPedidoService from "./fina/enviarEmailDeConfirmacaoDoPedido.service.ts";
+import ConsultarEstoqueGeralService from "./fina/consultarEstoqueGeral.service.ts";
+import ConsultarEstoqueDoProdutoService from "./fina/consultarEstoqueDoProduto.service.ts";
+import CalcularTotalService from "./fina/calcularTotal.service.ts";
 
 
 //#region Teste com granularidade grossa
