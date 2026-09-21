@@ -1,0 +1,21 @@
+{
+  "name": "ci-pipeline-lab",
+  "version": "1.0.0",
+  "description": "Laboratório prático de **Arquitetura de Software** utilizando **Node.js e TypeScript**.",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "tsx watch index.ts",
+    "start": "tsx index.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "homepage": "https://github.com/Heitor-Grande/software-architecture-lab#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
