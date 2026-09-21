@@ -26,27 +26,29 @@ Este laboratorio foi criado para praticar:
 - Jest
 - ESLint
 - Babel, para transformar TypeScript durante os testes
-- GitHub Actions, como ferramenta esperada para a pipeline de CI
+- GitHub Actions
 
 ## Estrutura atual
 
 ```text
-.
-|-- services/
-|   `-- calculadora.service.ts
-|-- test/
-|   `-- calculadora.service.test.ts
-|-- ../.github/workflows/
-|   `-- ci.yml
-|-- agents.md
-|-- babel.config.cjs
-|-- eslint.config.js
-|-- index.ts
-|-- jest.config.cjs
-|-- package.json
-|-- package-lock.json
-|-- README.md
-`-- tsconfig.json
+software-architecture-lab/
+|-- .github/
+|   `-- workflows/
+|       `-- ci.yml
+`-- ci-pipeline-lab/
+    |-- services/
+    |   `-- calculadora.service.ts
+    |-- test/
+    |   `-- calculadora.service.test.ts
+    |-- agents.md
+    |-- babel.config.cjs
+    |-- eslint.config.js
+    |-- index.ts
+    |-- jest.config.cjs
+    |-- package.json
+    |-- package-lock.json
+    |-- README.md
+    `-- tsconfig.json
 ```
 
 O arquivo `index.ts` contem uma aplicacao minima:
@@ -65,6 +67,13 @@ O `CalculadoraService` fornece quatro operacoes basicas:
 - Divisao
 
 Cada operacao possui um teste automatizado com Jest em `test/calculadora.service.test.ts`.
+
+## Pre-requisitos
+
+Para reproduzir localmente o mesmo ambiente usado pela CI:
+
+- Node.js `24.13.0`
+- npm `11.6.1`
 
 ## Como executar
 
@@ -114,15 +123,25 @@ npm run lint
 | `test` | `jest --runInBand` | Executa os testes automatizados com Jest. |
 | `lint` | `eslint "**/*.ts"` | Analisa os arquivos TypeScript com ESLint. |
 
-## Pipeline esperada
+## Pipeline de CI
 
-A pipeline de CI deve evoluir progressivamente para executar as seguintes etapas:
+A pipeline esta configurada em `.github/workflows/ci.yml` e executa as seguintes etapas:
 
-1. Instalar as dependencias
-2. Executar o lint
-3. Executar os testes automatizados
-4. Realizar o build do projeto TypeScript
-5. Informar se a pipeline foi executada com sucesso ou falhou
+1. Baixar o codigo do repositorio com `actions/checkout`.
+2. Configurar o Node.js `24.13.0` com `actions/setup-node`.
+3. Configurar o npm `11.6.1`.
+4. Exibir as versoes do Node.js e do npm no log.
+5. Instalar as dependencias com `npm ci`.
+6. Executar o lint com `npm run lint`.
+7. Executar os testes com `npm test`.
+8. Realizar o build com `npm run build`.
+
+As versoes do Node.js e do npm foram fixadas para manter a instalacao reproduzivel e compativel com o `package-lock.json`.
+
+O workflow e iniciado em `push` e `pull_request` quando houver alteracoes em:
+
+- `ci-pipeline-lab/**`
+- `.github/workflows/ci.yml`
 
 Fluxo esperado:
 
@@ -132,6 +151,8 @@ Desenvolvedor
 Git Push / Pull Request
       |
 GitHub Actions
+      |
+Node.js 24.13.0 / npm 11.6.1
       |
 Instalacao das dependencias
       |
@@ -173,5 +194,6 @@ No momento, o projeto possui:
 - Build TypeScript funcional
 - Lockfile para instalacao reproduzivel com `npm ci`
 - Workflow do GitHub Actions executado em pushes e Pull Requests
+- Ambiente da CI fixado em Node.js `24.13.0` e npm `11.6.1`
 
-O workflow `.github/workflows/ci.yml` instala as dependencias e executa automaticamente lint, testes e build quando arquivos deste laboratorio sao alterados em pushes ou Pull Requests.
+O workflow `.github/workflows/ci.yml` instala as dependencias e executa automaticamente lint, testes e build quando arquivos deste laboratorio sao alterados em pushes ou Pull Requests. Se uma etapa falhar, as etapas seguintes sao interrompidas e o job e marcado como falha.
